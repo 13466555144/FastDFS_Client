@@ -37,7 +37,7 @@ import net.coobird.thumbnailator.Thumbnails;
 public class DefaultFastFileStorageClient extends DefaultGenerateStorageClient implements FastFileStorageClient {
 
     /** 支持的图片类型 */
-    private static final String[] SUPPORT_IMAGE_TYPE = { "JPG", "JPEG", "PNG", "GIF", "BMP", "WBMP" };
+    private static final String[] SUPPORT_IMAGE_TYPE = { "JPG", "JPEG", "PNG", "GIF", "BMP", "WBMP","APK","ZIP","HTML" };
     private static final List<String> SUPPORT_IMAGE_LIST = Arrays.asList(SUPPORT_IMAGE_TYPE);
     /** 缩略图生成配置 */
     @Resource
