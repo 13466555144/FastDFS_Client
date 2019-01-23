@@ -13,6 +13,7 @@ import javax.annotation.Resource;
 import com.github.tobato.fastdfs.domain.MataData;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.Validate;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import com.github.tobato.fastdfs.domain.StorageNode;
@@ -37,8 +38,11 @@ import net.coobird.thumbnailator.Thumbnails;
 public class DefaultFastFileStorageClient extends DefaultGenerateStorageClient implements FastFileStorageClient {
 
     /** 支持的图片类型 */
-    private static final String[] SUPPORT_IMAGE_TYPE = { "JPG", "JPEG", "PNG", "GIF", "BMP", "WBMP","APK","ZIP","HTML" };
-    private static final List<String> SUPPORT_IMAGE_LIST = Arrays.asList(SUPPORT_IMAGE_TYPE);
+
+    @Value("${supportImageList}")
+    private  String  supportImageList;
+
+
     /** 缩略图生成配置 */
     @Resource
     private ThumbImageConfig thumbImageConfig;
@@ -110,7 +114,7 @@ public class DefaultFastFileStorageClient extends DefaultGenerateStorageClient i
      * @return
      */
     private boolean isSupportImage(String fileExtName) {
-        return SUPPORT_IMAGE_LIST.contains(fileExtName.toUpperCase());
+        return Arrays.asList(supportImageList.split("-")).contains(fileExtName.toUpperCase());
     }
 
     /**
